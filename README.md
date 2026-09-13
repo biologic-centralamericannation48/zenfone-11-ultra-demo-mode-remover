@@ -1,8 +1,22 @@
-# AI2401 ADF Rescue
+# Zenfone 11 Ultra Demo Mode Remover
 
-[繁體中文說明](README.zh-TW.md)
+**Remove ASUS retail demo mode from a Zenfone 11 Ultra (`ASUS_AI2401_H` / AI2401).**
+
+[繁體中文說明 / 解除華碩 Zenfone 11 Ultra 展示模式](README.zh-TW.md)
 
 An unofficial, safety-focused Windows tool for removing the persistent ASUS retail-demo flag from a **validated Zenfone 11 Ultra (`ASUS_AI2401_H` / AI2401)**.
+
+## Does this match your problem?
+
+Use this tool if, on a Zenfone 11 Ultra:
+
+- **Settings > System > Reset options** says factory reset is **managed by retail demo mode** / 「已被展示模式管理」.
+- **Erase all data (factory reset)** is greyed out and cannot be tapped.
+- A recovery-mode factory reset completed, but the demo management came back anyway.
+- The phone was bought ex-display / as a store demo unit (店頭展示機) and still behaves like one.
+- The retail demo launcher or demo video returns after every reset.
+
+If instead the phone is managed by a company or school (a real Device Owner shown by `adb shell dpm list-owners`), this tool is not for you and will not help. See [CONTRIBUTING.md](CONTRIBUTING.md) for what this project deliberately refuses to do.
 
 The tool automates the recovery path that was validated on real hardware: it moves from authorized ADB into the bottom-level bootloader, verifies the exact device and `ADF` partition metadata, and erases only `ADF`.
 
@@ -96,6 +110,12 @@ Do not download modified fastboot binaries, unlock APKs, or service tools from u
 ## Scope and contributions
 
 This release is deliberately restricted to the one hardware/software combination validated on a physical device. Pull requests for other models must include reproducible read-only evidence, exact partition metadata, and a safety review. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Search keywords
+
+ASUS Zenfone 11 Ultra demo mode, retail demo mode removal, ASUS_AI2401_H, AI2401, ADF partition, factory reset managed by retail demo mode, ex-display phone, store demo unit.
+
+華碩 Zenfone 11 Ultra 解除展示模式、解除 demo 模式、已被展示模式管理、無法恢復原廠設定、展示機、店頭展示機、零售展示模式、ADF 分割區。
 
 ## License and trademarks
 

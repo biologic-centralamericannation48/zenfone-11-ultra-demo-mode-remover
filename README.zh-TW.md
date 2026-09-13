@@ -1,6 +1,22 @@
-# AI2401 ADF Rescue
+# 解除 ASUS Zenfone 11 Ultra 展示模式（Demo 模式）
+
+**Zenfone 11 Ultra Demo Mode Remover** — 適用機型 `ASUS_AI2401_H`／AI2401。
+
+[English README](README.md)
 
 這是一個非官方、安全優先的 Windows 工具，用來解除 **ASUS Zenfone 11 Ultra（`ASUS_AI2401_H`／AI2401）** 在 Recovery 恢復原廠後仍殘留的展示模式管理。
+
+## 你的問題是這個嗎？
+
+如果你的 Zenfone 11 Ultra 出現以下情況，這個工具就是為你寫的：
+
+- 「設定 → 系統 → 重設選項」顯示 **「已被展示模式管理」**。
+- 「清除所有資料（恢復原廠設定）」是灰的，點不下去。
+- 已經用 Recovery 做過恢復原廠，重開機後展示模式管理還是在。
+- 手機是**展示機／店頭展示機**買來的，開機後自動播放展示影片或跳進展示桌面。
+- 每次重置後，Retail Demo 展示桌面都會自己回來。
+
+反過來說，如果這台是**公司或學校配發的管理機**（用 `adb shell dpm list-owners` 查得到真正的 Device Owner），這個工具幫不上忙，也不該用。本專案刻意不處理的範圍寫在 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 工具會自動完成已在真機驗證過的流程：從已授權的 ADB 進入底層 bootloader，核對手機型號、序號與 `ADF` 分割區資料，最後只清除 `ADF`。
 
@@ -90,6 +106,12 @@ Android 的展示模式實作會因廠商而異。AOSP 文件指出，離開展�
 請參閱 [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)。
 
 請勿下載來源不明的修改版 fastboot、解鎖 APK 或工廠工具。本專案刻意不處理 bootloader 解鎖、Qualcomm EDL、驗證繞過或任意分割區寫入。
+
+## 搜尋關鍵字
+
+華碩 Zenfone 11 Ultra 解除展示模式、解除 demo 模式、已被展示模式管理、恢復原廠設定 灰色 無法點選、展示機、店頭展示機、零售展示模式、Retail Demo、ADF 分割區、ASUS_AI2401_H、AI2401。
+
+ASUS Zenfone 11 Ultra demo mode removal, retail demo mode, factory reset managed by retail demo mode, ex-display phone, ADF partition.
 
 ## 授權與商標
 

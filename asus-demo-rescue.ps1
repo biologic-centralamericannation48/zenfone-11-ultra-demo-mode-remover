@@ -24,7 +24,7 @@ $script:Fastboot = $null
 
 function Write-Banner {
     Write-Host ""
-    Write-Host "AI2401 ADF Rescue v$script:Version" -ForegroundColor Cyan
+    Write-Host "Zenfone 11 Ultra Demo Mode Remover v$script:Version" -ForegroundColor Cyan
     Write-Host "Unofficial ASUS Zenfone 11 Ultra retail-demo recovery tool"
     Write-Host ""
 }
