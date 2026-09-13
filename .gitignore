@@ -1,0 +1,7 @@
+platform-tools/
+*.apk
+*.img
+*.zip
+*.log
+window.xml
+

@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  powershell-safety:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run parser, safety, and fixture tests
+        shell: powershell
+        run: .\tests\run-tests.ps1
+      - name: Check help mode
+        shell: powershell
+        run: .\asus-demo-rescue.ps1 -Mode Help
